@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/house_door"
+            android:title="@string/menu_home" />
+        <item
+            android:id="@+id/nav_beneficios"
+            android:icon="@drawable/suitcase"
+            android:title="@string/menu_gallery" />
+        <item
+            android:id="@+id/nav_boletos"
+            android:icon="@drawable/ticket"
+            android:title="@string/menu_slideshow" />
+        <item
+            android:id="@+id/nav_descuentos"
+            android:icon="@drawable/cart"
+            android:title="@string/descuentos" />
+        <item
+            android:id="@+id/nav_documentos"
+            android:icon="@drawable/files"
+            android:title="@string/documentos" />
+        <item
+            android:id="@+id/nav_salir"
+            android:icon="@drawable/out"
+            android:title="@string/cerrar_sesi_n" />
+    </group>
+</menu>
