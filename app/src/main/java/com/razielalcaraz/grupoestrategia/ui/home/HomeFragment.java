@@ -4,9 +4,11 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -23,6 +25,7 @@ public class HomeFragment extends Fragment implements AdvancedWebView.Listener {
 
     private HomeViewModel homeViewModel;
     private AdvancedWebView mWebView;
+    static String TAG ="Home Fragment";
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel =
@@ -34,6 +37,7 @@ public class HomeFragment extends Fragment implements AdvancedWebView.Listener {
        // mWebView.setListener(getActivity(),getActivity());
         mWebView.setMixedContentAllowed(true);
         mWebView.loadUrl("https://topstyleshop.com/");
+
         return root;
     }
     @SuppressLint("NewApi")
@@ -62,21 +66,20 @@ public class HomeFragment extends Fragment implements AdvancedWebView.Listener {
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
         mWebView.onActivityResult(requestCode, resultCode, intent);
-        // ...
     }
 
     @Override
-    public void onPageStarted(String url, Bitmap favicon) { }
+    public void onPageStarted(String url, Bitmap favicon) {Log.w(TAG,"pagina iniciada"); }
 
     @Override
-    public void onPageFinished(String url) { }
+    public void onPageFinished(String url) {Log.w(TAG,"pagina iniciada");  }
 
     @Override
-    public void onPageError(int errorCode, String description, String failingUrl) { }
+    public void onPageError(int errorCode, String description, String failingUrl) {Log.w(TAG,"pagina iniciada"); }
 
     @Override
-    public void onDownloadRequested(String url, String suggestedFilename, String mimeType, long contentLength, String contentDisposition, String userAgent) { }
+    public void onDownloadRequested(String url, String suggestedFilename, String mimeType, long contentLength, String contentDisposition, String userAgent) {Log.w(TAG,"pagina iniciada"); }
 
     @Override
-    public void onExternalPageRequest(String url) { }
+    public void onExternalPageRequest(String url) {Log.w(TAG,"pagina iniciada"); }
 }
