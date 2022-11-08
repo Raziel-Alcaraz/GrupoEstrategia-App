@@ -7,36 +7,40 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.razielalcaraz.grupoestrategia.ui.home.HomeFragment"
-        android:label="@string/menu_home"
+        android:name="com.razielalcaraz.grupoestrategia.ui.comunicacionInterna.HomeFragment"
+        android:label="Comunicados"
         tools:layout="@layout/fragment_home" />
 
-    <fragment
-        android:id="@+id/nav_beneficios"
-        android:name="com.razielalcaraz.grupoestrategia.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+
 
     <fragment
         android:id="@+id/nav_boletos"
-        android:name="com.razielalcaraz.grupoestrategia.ui.slideshow.SlideshowFragment"
+        android:name="com.razielalcaraz.grupoestrategia.ui.boletos.BoletosFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
     <fragment
-        android:id="@+id/nav_descuentos"
-        android:name="com.razielalcaraz.grupoestrategia.ui.home.HomeFragment"
+        android:id="@+id/nav_beneficios"
+        android:name="com.razielalcaraz.grupoestrategia.ui.descuentos.DescuentosFragment"
         android:label="Descuentos"
         tools:layout="@layout/fragment_home" />
-
     <fragment
-        android:id="@+id/nav_documentos"
-        android:name="com.razielalcaraz.grupoestrategia.ui.gallery.GalleryFragment"
-        android:label="Documentos"
+        android:id="@+id/nav_salud"
+        android:name="com.razielalcaraz.grupoestrategia.ui.salud.SaludFragment"
+        android:label="Salud"
         tools:layout="@layout/fragment_gallery" />
-
+    <fragment
+        android:id="@+id/nav_rrhh"
+        android:name="com.razielalcaraz.grupoestrategia.ui.recursosHumanos.RecursosHumanosFragment"
+        android:label="RRHH"
+        tools:layout="@layout/fragment_gallery" />
+    <fragment
+        android:id="@+id/nav_ideas"
+        android:name="com.razielalcaraz.grupoestrategia.ui.ideas.IdeasFragment"
+        android:label="RRHH"
+        tools:layout="@layout/fragment_gallery" />
     <fragment
         android:id="@+id/nav_salir"
-        android:name="com.razielalcaraz.grupoestrategia.ui.slideshow.SlideshowFragment"
+        android:name="com.razielalcaraz.grupoestrategia.ui.boletos.BoletosFragment"
         android:label="Salir"
         tools:layout="@layout/fragment_slideshow" />
 </navigation>

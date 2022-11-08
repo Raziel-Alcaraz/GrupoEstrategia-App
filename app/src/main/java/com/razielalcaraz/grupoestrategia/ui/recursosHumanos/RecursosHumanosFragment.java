@@ -1,4 +1,4 @@
-package com.razielalcaraz.grupoestrategia.ui.slideshow;
+package com.razielalcaraz.grupoestrategia.ui.recursosHumanos;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.razielalcaraz.grupoestrategia.R;
 
-public class SlideshowFragment extends Fragment {
+public class RecursosHumanosFragment extends Fragment {
 
-    private SlideshowViewModel slideshowViewModel;
+    private RecursosHumanosViewModel galleryViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        slideshowViewModel =
-                new ViewModelProvider(this).get(SlideshowViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_slideshow, container, false);
-        final TextView textView = root.findViewById(R.id.text_slideshow);
-        slideshowViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        galleryViewModel =
+                new ViewModelProvider(this).get(RecursosHumanosViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_gallery, container, false);
+        final TextView textView = root.findViewById(R.id.text_gallery);
+        galleryViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

@@ -1,16 +1,16 @@
-package com.razielalcaraz.grupoestrategia.ui.gallery;
+package com.razielalcaraz.grupoestrategia.ui.boletos;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class GalleryViewModel extends ViewModel {
+public class BoletosViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public GalleryViewModel() {
+    public BoletosViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is gallery fragment");
+        mText.setValue("Boletos de cine");
     }
 
     public LiveData<String> getText() {

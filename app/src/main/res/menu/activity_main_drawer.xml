@@ -7,23 +7,27 @@
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/house_door"
-            android:title="@string/menu_home" />
-        <item
-            android:id="@+id/nav_beneficios"
-            android:icon="@drawable/suitcase"
-            android:title="@string/menu_gallery" />
+            android:title="Comunicados" />
         <item
             android:id="@+id/nav_boletos"
             android:icon="@drawable/ticket"
-            android:title="@string/menu_slideshow" />
+            android:title="Boletos" />
         <item
-            android:id="@+id/nav_descuentos"
-            android:icon="@drawable/cart"
-            android:title="@string/descuentos" />
+            android:id="@+id/nav_beneficios"
+            android:icon="@drawable/suitcase"
+            android:title="Descuentos" />
         <item
-            android:id="@+id/nav_documentos"
+            android:id="@+id/nav_salud"
+            android:icon="@drawable/salud"
+            android:title="Salud" />
+        <item
+            android:id="@+id/nav_rrhh"
             android:icon="@drawable/files"
-            android:title="@string/documentos" />
+            android:title="RRHH" />
+        <item
+            android:id="@+id/nav_ideas"
+            android:icon="@drawable/ideas"
+            android:title="Ideas" />
         <item
             android:id="@+id/nav_salir"
             android:icon="@drawable/out"

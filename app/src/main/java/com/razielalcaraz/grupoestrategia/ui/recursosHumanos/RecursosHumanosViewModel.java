@@ -1,16 +1,16 @@
-package com.razielalcaraz.grupoestrategia.ui.slideshow;
+package com.razielalcaraz.grupoestrategia.ui.recursosHumanos;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class SlideshowViewModel extends ViewModel {
+public class RecursosHumanosViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public SlideshowViewModel() {
+    public RecursosHumanosViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is slideshow fragment");
+        mText.setValue("Recursos humanos");
     }
 
     public LiveData<String> getText() {

@@ -1,4 +1,4 @@
-package com.razielalcaraz.grupoestrategia.ui.home;
+package com.razielalcaraz.grupoestrategia.ui.comunicacionInterna;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
