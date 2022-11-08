@@ -65,17 +65,17 @@ public class IdeasFragment extends Fragment implements AdvancedWebView.Listener 
     }
 
     @Override
-    public void onPageStarted(String url, Bitmap favicon) {Log.w(TAG,"pagina iniciada"); }
+    public void onPageStarted(String url, Bitmap favicon) { }
 
     @Override
-    public void onPageFinished(String url) {Log.w(TAG,"pagina iniciada");  }
+    public void onPageFinished(String url) {  }
 
     @Override
-    public void onPageError(int errorCode, String description, String failingUrl) {Log.w(TAG,"pagina iniciada"); }
+    public void onPageError(int errorCode, String description, String failingUrl) { }
 
     @Override
-    public void onDownloadRequested(String url, String suggestedFilename, String mimeType, long contentLength, String contentDisposition, String userAgent) {Log.w(TAG,"pagina iniciada"); }
+    public void onDownloadRequested(String url, String suggestedFilename, String mimeType, long contentLength, String contentDisposition, String userAgent) { }
 
     @Override
-    public void onExternalPageRequest(String url) {Log.w(TAG,"pagina iniciada"); }
+    public void onExternalPageRequest(String url) { }
 }

@@ -1,5 +1,8 @@
 package com.razielalcaraz.grupoestrategia;
 
+import static java.security.AccessController.getContext;
+
+import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
@@ -33,9 +36,12 @@ public final class FeedReaderContract {
         public static final int DATABASE_VERSION = 1;
         public static final String DATABASE_NAME = "FeedReader.db";
 
-        public FeedReaderDbHelper(AccessControlContext context) {
+        public FeedReaderDbHelper(Context context) {
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
         }
+
+
+
         public void onCreate(SQLiteDatabase db) {
             db.execSQL(SQL_CREATE_ENTRIES);
         }

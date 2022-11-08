@@ -72,7 +72,7 @@ static String TAG="Main activity";
 Intent intent = new Intent(this, LoginActivity.class);
 startActivity(intent);
         }
-        dbHelper = new FeedReaderContract.FeedReaderDbHelper(getContext());
+       // dbHelper = new FeedReaderContract.FeedReaderDbHelper(getContext());
 
     }
 
@@ -86,7 +86,7 @@ startActivity(intent);
     }
 
     public static void escribirDatos(String title, String subtitle){
-        //TODO: Definir estructura de las bases de datos 
+        //TODO: Definir estructura de las bases de datos
     // Gets the data repository in write mode
 SQLiteDatabase db = dbHelper.getWritableDatabase();
 
