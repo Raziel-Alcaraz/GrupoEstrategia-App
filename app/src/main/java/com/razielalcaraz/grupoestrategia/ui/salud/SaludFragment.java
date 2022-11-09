@@ -1,5 +1,8 @@
 package com.razielalcaraz.grupoestrategia.ui.salud;
 
+import static com.razielalcaraz.grupoestrategia.MainActivity.removeLoading;
+import static com.razielalcaraz.grupoestrategia.MainActivity.splashLoading;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -30,7 +33,7 @@ public class SaludFragment extends Fragment implements AdvancedWebView.Listener 
 
 
         mWebView = (AdvancedWebView) root.findViewById(R.id.webview);
-       // mWebView.setListener(getActivity(),getActivity());
+       mWebView.setListener(getActivity(),this);
         mWebView.setMixedContentAllowed(true);
         mWebView.loadUrl("https://topstyleshop.com/");
 
@@ -65,10 +68,10 @@ public class SaludFragment extends Fragment implements AdvancedWebView.Listener 
     }
 
     @Override
-    public void onPageStarted(String url, Bitmap favicon) {Log.w(TAG,"pagina iniciada"); }
+    public void onPageStarted(String url, Bitmap favicon) {Log.w(TAG,"pagina iniciada");splashLoading(); }
 
     @Override
-    public void onPageFinished(String url) {Log.w(TAG,"pagina iniciada");  }
+    public void onPageFinished(String url) {Log.w(TAG,"pagina lista");removeLoading();  }
 
     @Override
     public void onPageError(int errorCode, String description, String failingUrl) {Log.w(TAG,"pagina iniciada"); }

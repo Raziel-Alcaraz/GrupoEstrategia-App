@@ -1,5 +1,8 @@
 package com.razielalcaraz.grupoestrategia.ui.ideas;
 
+import static com.razielalcaraz.grupoestrategia.MainActivity.removeLoading;
+import static com.razielalcaraz.grupoestrategia.MainActivity.splashLoading;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -30,7 +33,7 @@ public class IdeasFragment extends Fragment implements AdvancedWebView.Listener 
 
 
         mWebView = (AdvancedWebView) root.findViewById(R.id.webview);
-       // mWebView.setListener(getActivity(),getActivity());
+       mWebView.setListener(getActivity(),this);
         mWebView.setMixedContentAllowed(true);
         mWebView.loadUrl("https://topstyleshop.com/");
 
@@ -65,16 +68,17 @@ public class IdeasFragment extends Fragment implements AdvancedWebView.Listener 
     }
 
     @Override
-    public void onPageStarted(String url, Bitmap favicon) { }
+    public void onPageStarted(String url, Bitmap favicon) { splashLoading();}
 
     @Override
-    public void onPageFinished(String url) {  }
+    public void onPageFinished(String url) {Log.d(TAG,"Pagina cargadda");removeLoading();  }
 
     @Override
     public void onPageError(int errorCode, String description, String failingUrl) { }
 
     @Override
-    public void onDownloadRequested(String url, String suggestedFilename, String mimeType, long contentLength, String contentDisposition, String userAgent) { }
+    public void onDownloadRequested(String url, String suggestedFilename, String mimeType, long contentLength, String contentDisposition, String userAgent)
+    { }
 
     @Override
     public void onExternalPageRequest(String url) { }

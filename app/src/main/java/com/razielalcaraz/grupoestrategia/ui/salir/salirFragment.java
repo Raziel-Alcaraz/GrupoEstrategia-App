@@ -1,4 +1,4 @@
-package com.razielalcaraz.grupoestrategia.ideas;
+package com.razielalcaraz.grupoestrategia.ui.salir;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -17,15 +17,15 @@ import com.razielalcaraz.grupoestrategia.R;
 
 import im.delight.android.webview.AdvancedWebView;
 
-public class IdeasFragment extends Fragment implements AdvancedWebView.Listener {
+public class salirFragment extends Fragment implements AdvancedWebView.Listener {
 
-    private IdeasViewModel homeViewModel;
+    private salirViewModel homeViewModel;
     private AdvancedWebView mWebView;
     static String TAG ="Home Fragment";
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel =
-                new ViewModelProvider(this).get(IdeasViewModel.class);
+                new ViewModelProvider(this).get(salirViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
 

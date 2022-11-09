@@ -67,7 +67,7 @@ static String TAG="Main activity";
 
         Glide.with(this).load(R.drawable.loading).into(imageView);
         vistaRoot=this;
-        removeLoading();
+
         if(!userIsLogged) {
 Intent intent = new Intent(this, LoginActivity.class);
 startActivity(intent);

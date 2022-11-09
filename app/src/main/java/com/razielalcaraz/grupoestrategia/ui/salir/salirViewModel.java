@@ -1,14 +1,14 @@
-package com.razielalcaraz.grupoestrategia.ideas;
+package com.razielalcaraz.grupoestrategia.ui.salir;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class IdeasViewModel extends ViewModel {
+public class salirViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public IdeasViewModel() {
+    public salirViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("This is home fragment");
     }

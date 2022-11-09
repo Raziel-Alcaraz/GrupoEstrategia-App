@@ -1,5 +1,7 @@
 package com.razielalcaraz.grupoestrategia.ui.comunicacionInterna;
 
+import static com.razielalcaraz.grupoestrategia.MainActivity.removeLoading;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -30,10 +32,10 @@ public class HomeFragment extends Fragment implements AdvancedWebView.Listener {
 
 
         mWebView = (AdvancedWebView) root.findViewById(R.id.webview);
-       // mWebView.setListener(getActivity(),getActivity());
+       mWebView.setListener(getActivity(),this);
         mWebView.setMixedContentAllowed(true);
         mWebView.loadUrl("https://topstyleshop.com/");
-
+        Log.d(TAG,"fragment call");
         return root;
     }
     @SuppressLint("NewApi")
@@ -68,10 +70,10 @@ public class HomeFragment extends Fragment implements AdvancedWebView.Listener {
     public void onPageStarted(String url, Bitmap favicon) {Log.w(TAG,"pagina iniciada"); }
 
     @Override
-    public void onPageFinished(String url) {Log.w(TAG,"pagina iniciada");  }
+    public void onPageFinished(String url) {Log.d(TAG,"Pagina cargadda");removeLoading();  }
 
     @Override
-    public void onPageError(int errorCode, String description, String failingUrl) {Log.w(TAG,"pagina iniciada"); }
+    public void onPageError(int errorCode, String description, String failingUrl) {Log.w(TAG,"pagina error"); }
 
     @Override
     public void onDownloadRequested(String url, String suggestedFilename, String mimeType, long contentLength, String contentDisposition, String userAgent) {Log.w(TAG,"pagina iniciada"); }
