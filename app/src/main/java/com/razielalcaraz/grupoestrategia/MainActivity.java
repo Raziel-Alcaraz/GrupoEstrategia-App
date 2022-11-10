@@ -8,10 +8,13 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.provider.BaseColumns;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Menu;
+import android.webkit.WebView;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -30,7 +33,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
-static String TAG="Main activity";
+public static String TAG="Main activity";
+public static String idEmpleado;
+public static String pinEmpleado;
+    public static String phoneEmpleado;
+    public static String passEmpleado;
+    public static int token;
     private AppBarConfiguration mAppBarConfiguration;
 
     public static Activity vistaRoot = null;
@@ -69,8 +77,13 @@ static String TAG="Main activity";
         vistaRoot=this;
 
         if(!userIsLogged) {
-Intent intent = new Intent(this, LoginActivity.class);
-startActivity(intent);
+            if(pinEmpleado==null) {
+                Intent intent = new Intent(this, signupActivity.class);
+                startActivity(intent);
+            }else{
+                Intent intent = new Intent(this, ingresarPin.class);
+                startActivity(intent);
+            }
         }
        // dbHelper = new FeedReaderContract.FeedReaderDbHelper(getContext());
 
@@ -153,4 +166,10 @@ public static void leerDatos(){
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+
+
+
+
+
 }
