@@ -39,7 +39,7 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 public class makePassword extends AppCompatActivity {
-String TAG = "makePasswordActivity";
+static String TAG = "makePasswordActivity";
     private static SecretKeySpec secretKey;
     private static byte[] key;
     private static String keyString = "b14ca5898a4e4133bbce2ea2315a1acm";
@@ -49,7 +49,7 @@ int errorCount=0;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_make_password);
     }
-    public void subirDatos(View v){
+    public void subirDatos(View v) throws InvalidKeyException, NoSuchPaddingException, NoSuchAlgorithmException {
 String pass1 = String.valueOf(((EditText) findViewById(R.id.pass1) ).getText());
 String pass2 = String.valueOf(((EditText) findViewById(R.id.pass2) ).getText());
 Log.d(TAG,pass1+"-"+pass2);
@@ -67,7 +67,14 @@ if(!pass1.equals(pass2)){
         data.put("phone",MainActivity.phoneEmpleado);
         data.put("pwd",MainActivity.passEmpleado);
         String url = "https://rechnom-test.azurewebsites.net/api/BenefitsData";
-        Log.d(TAG,"Pass encriptado-------->"+ MainActivity.passEmpleado);
+        Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+        cipher.init(Cipher.ENCRYPT_MODE, secretKey);
+        setKey(keyString);
+        Log.d(TAG,"Pass encriptado-------->"+ MainActivity.passEmpleado
+
+        +"Pas desencriptado: "+decrypt(MainActivity.passEmpleado.getBytes(StandardCharsets.UTF_8)
+                , keyString,  key));
+
         sendInfo(url, data);
     }
 
@@ -82,6 +89,21 @@ if(!pass1.equals(pass2)){
                     .encodeToString(cipher.doFinal(strToEncrypt.getBytes("UTF-8")));
         } catch (Exception e) {
             System.out.println("Error while encrypting: " + e.toString());
+        }
+        return null;
+    }
+
+    public static String decrypt(byte[] cipherText, String keyString, byte[] IV) {
+        try {
+            Cipher cipher = Cipher.getInstance("AES");
+            SecretKeySpec keySpec = new SecretKeySpec(keyString.getBytes(StandardCharsets.UTF_8),"AES" );
+            IvParameterSpec ivSpec = new IvParameterSpec(IV);
+            cipher.init(Cipher.DECRYPT_MODE, secretKey, ivSpec);
+            byte[] decryptedText = cipher.doFinal(cipherText);
+            Log.d(TAG, new String(decryptedText));
+            return new String(decryptedText);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return null;
     }
