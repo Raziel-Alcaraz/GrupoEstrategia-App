@@ -26,6 +26,7 @@ import java.security.InvalidKeyException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.util.Arrays;
 import java.util.Base64;
 import java.util.HashMap;
 
@@ -41,14 +42,18 @@ import javax.crypto.spec.SecretKeySpec;
 public class makePassword extends AppCompatActivity {
 static String TAG = "makePasswordActivity";
     private static SecretKeySpec secretKey;
-    private static byte[] key;
+    private static byte[] key= new byte[16];
+
     private static String keyString = "b14ca5898a4e4133bbce2ea2315a1acm";
 int errorCount=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_make_password);
-    }
+        String pwdEncriptado=encrypt("prueba");
+        String pwdDesEncriptado=decrypt(pwdEncriptado);
+        Log.d(TAG,pwdEncriptado+" : "+pwdDesEncriptado);
+            }
     public void subirDatos(View v) throws InvalidKeyException, NoSuchPaddingException, NoSuchAlgorithmException {
 String pass1 = String.valueOf(((EditText) findViewById(R.id.pass1) ).getText());
 String pass2 = String.valueOf(((EditText) findViewById(R.id.pass2) ).getText());
@@ -61,19 +66,18 @@ if(!pass1.equals(pass2)){
         Snackbar.make((View)findViewById(R.id.pass1), "Ingresa al menos 5 caracteres", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
     }else{
+        String pwdEncriptado=encrypt(pass1);
+        String pwdDesEncriptado=decrypt(pwdEncriptado);
     MainActivity.passEmpleado = encrypt(pass1);
         HashMap data = new HashMap();
         data.put("tkn",MainActivity.token);
         data.put("phone",MainActivity.phoneEmpleado);
         data.put("pwd",MainActivity.passEmpleado);
         String url = "https://rechnom-test.azurewebsites.net/api/BenefitsData";
-        Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
-        cipher.init(Cipher.ENCRYPT_MODE, secretKey);
-        setKey(keyString);
+
         Log.d(TAG,"Pass encriptado-------->"+ MainActivity.passEmpleado
 
-        +"Pas desencriptado: "+decrypt(MainActivity.passEmpleado.getBytes(StandardCharsets.UTF_8)
-                , keyString,  key));
+        +"Pass desencriptado: "+pwdDesEncriptado);
 
         sendInfo(url, data);
     }
@@ -83,7 +87,7 @@ if(!pass1.equals(pass2)){
     public static String encrypt(final String strToEncrypt) {
         try {
             setKey(keyString);
-            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5PADDING");
             cipher.init(Cipher.ENCRYPT_MODE, secretKey);
             return Base64.getEncoder()
                     .encodeToString(cipher.doFinal(strToEncrypt.getBytes("UTF-8")));
@@ -93,28 +97,22 @@ if(!pass1.equals(pass2)){
         return null;
     }
 
-    public static String decrypt(byte[] cipherText, String keyString, byte[] IV) {
+    public static String decrypt(final String strToDecrypt) {
         try {
-            Cipher cipher = Cipher.getInstance("AES");
-            SecretKeySpec keySpec = new SecretKeySpec(keyString.getBytes(StandardCharsets.UTF_8),"AES" );
-            IvParameterSpec ivSpec = new IvParameterSpec(IV);
-            cipher.init(Cipher.DECRYPT_MODE, secretKey, ivSpec);
-            byte[] decryptedText = cipher.doFinal(cipherText);
-            Log.d(TAG, new String(decryptedText));
-            return new String(decryptedText);
+            setKey(keyString);
+            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5PADDING");
+            cipher.init(Cipher.DECRYPT_MODE, secretKey);
+            return new String(cipher.doFinal(Base64.getDecoder()
+                    .decode(strToDecrypt)));
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Error while decrypting: " + e.toString());
         }
         return null;
     }
     public static void setKey(final String myKey) {
         MessageDigest sha = null;
-        try {
-            byte [] keyAln = myKey.getBytes("UTF-8");
-            secretKey = new SecretKeySpec(keyAln, "AES");
-        } catch ( UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+        byte [] keyAln = myKey.getBytes(StandardCharsets.UTF_8);
+        secretKey = new SecretKeySpec(keyAln, "AES");
     }
 
     /**/
@@ -122,11 +120,30 @@ if(!pass1.equals(pass2)){
         RequestQueue requstQueue = Volley.newRequestQueue(this);
 JSONObject yeisonObyect = new JSONObject(data);
 Log.d(TAG, String.valueOf(yeisonObyect));
+StringRequest sr = new StringRequest(Request.Method.POST,url, new Response.Listener<String>() {
+    @Override
+    public void onResponse(String response) {
+
+    }
+}, new Response.ErrorListener() {
+    @Override
+    public void onErrorResponse(VolleyError error) {
+
+    }
+});
+
+
         JsonObjectRequest jsonobj = new JsonObjectRequest(Request.Method.POST, url,yeisonObyect,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.d(TAG, String.valueOf(response));
+
+                        MainActivity.escribirDatos("tkn", String.valueOf(MainActivity.token));
+                        MainActivity.escribirDatos("phone", String.valueOf(MainActivity.phoneEmpleado));
+                        MainActivity.escribirDatos("pwd", String.valueOf(MainActivity.passEmpleado));
+                        MainActivity.escribirDatos("pwd", String.valueOf(MainActivity.passEmpleado));
+                        MainActivity.leerDatos("tkn");
                         irAlMain();
                     }
                 },
@@ -134,6 +151,23 @@ Log.d(TAG, String.valueOf(yeisonObyect));
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Log.d(TAG,"VolleyError: "+ String.valueOf(error));
+                        int position = String.valueOf(error).indexOf("{");
+                        if(position>0){
+
+                            //String romper = String.valueOf(error).split("\\{")[1];
+                            int position2 = String.valueOf(error).indexOf("}");
+                            String romper = String.valueOf(error).substring(position,position2+1);
+                            Log.d(TAG,"string roto: "+romper);
+                            romper=romper.replace("\"", "");
+                            romper=romper.replace("\\", "");
+                            romper=romper.replace(" ", "__");
+                            try {
+                                JSONObject objeto = new JSONObject(romper);
+                                Log.d(TAG, "jsonobject: "+ objeto.toString());
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
                         if(errorCount<1){
                             sendInfo(url, data);
                             errorCount++;
@@ -147,7 +181,7 @@ Log.d(TAG, String.valueOf(yeisonObyect));
 
     }
     void irAlMain(){
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, MenuPrincipalActivity.class);
         startActivity(intent);
     }
 }

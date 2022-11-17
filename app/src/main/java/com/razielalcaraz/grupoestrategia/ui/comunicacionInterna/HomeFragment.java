@@ -34,7 +34,7 @@ public class HomeFragment extends Fragment implements AdvancedWebView.Listener {
         mWebView = (AdvancedWebView) root.findViewById(R.id.webview);
        mWebView.setListener(getActivity(),this);
         mWebView.setMixedContentAllowed(true);
-        mWebView.loadUrl("https://topstyleshop.com/");
+       // mWebView.loadUrl("https://topstyleshop.com/");
         Log.d(TAG,"fragment call");
         return root;
     }

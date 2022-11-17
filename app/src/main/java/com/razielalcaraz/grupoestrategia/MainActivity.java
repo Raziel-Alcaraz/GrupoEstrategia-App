@@ -38,6 +38,7 @@ public static String idEmpleado;
 public static String pinEmpleado;
     public static String phoneEmpleado;
     public static String passEmpleado;
+    public static String webTarget;
     public static int token;
     private AppBarConfiguration mAppBarConfiguration;
 
@@ -57,6 +58,7 @@ public static String pinEmpleado;
                 Snackbar.make(view, "Levantar ticket de soporte", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
                 removeLoading();
+                menuPrincipal();
             }
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -81,14 +83,20 @@ public static String pinEmpleado;
                 Intent intent = new Intent(this, signupActivity.class);
                 startActivity(intent);
             }else{
-                Intent intent = new Intent(this, ingresarPin.class);
+                Intent intent = new Intent(this, signupActivity.class);
                 startActivity(intent);
             }
+        }else{
+            Intent intent = new Intent(this, MenuPrincipalActivity.class);
+           // startActivity(intent);
         }
        // dbHelper = new FeedReaderContract.FeedReaderDbHelper(getContext());
 
     }
-
+public void menuPrincipal(){
+    Intent intent = new Intent(this, MenuPrincipalActivity.class);
+    startActivity(intent);
+}
     public static void removeLoading(){
 
         ImageView loadingImage = (ImageView) vistaRoot.findViewById(R.id.ImageLoad);
@@ -98,21 +106,21 @@ public static String pinEmpleado;
 
     }
 
-    public static void escribirDatos(String title, String subtitle){
+    public static void escribirDatos(String title, String value){
         //TODO: Definir estructura de las bases de datos
     // Gets the data repository in write mode
 SQLiteDatabase db = dbHelper.getWritableDatabase();
 
 // Create a new map of values, where column names are the keys
 ContentValues values = new ContentValues();
-values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_TITLE, title);
-values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_SUBTITLE, subtitle);
+values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_KEY, title);
+values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_VALUE, value);
 
 // Insert the new row, returning the primary key value of the new row
 long newRowId = db.insert(FeedReaderContract.FeedEntry.TABLE_NAME, null, values);
 
     }
-public static void leerDatos(){
+public static void leerDatos(String title){
     //TODO: Definir estructura de las bases de datos
     SQLiteDatabase db = dbHelper.getReadableDatabase();
 
@@ -120,17 +128,17 @@ public static void leerDatos(){
 // you will actually use after this query.
     String[] projection = {
             BaseColumns._ID,
-            FeedReaderContract.FeedEntry.COLUMN_NAME_TITLE,
-            FeedReaderContract.FeedEntry.COLUMN_NAME_SUBTITLE
+            FeedReaderContract.FeedEntry.COLUMN_NAME_KEY,
+            FeedReaderContract.FeedEntry.COLUMN_NAME_VALUE
     };
 
 // Filter results WHERE "title" = 'My Title'
-    String selection = FeedReaderContract.FeedEntry.COLUMN_NAME_TITLE + " = ?";
-    String[] selectionArgs = { "My Title" };
+    String selection = FeedReaderContract.FeedEntry.COLUMN_NAME_KEY + " = ?";
+    String[] selectionArgs = { title };
 
 // How you want the results sorted in the resulting Cursor
     String sortOrder =
-            FeedReaderContract.FeedEntry.COLUMN_NAME_SUBTITLE + " DESC";
+            FeedReaderContract.FeedEntry.COLUMN_NAME_VALUE + " DESC";
 
     Cursor cursor = db.query(
             FeedReaderContract.FeedEntry.TABLE_NAME,   // The table to query
@@ -141,7 +149,7 @@ public static void leerDatos(){
             null,                   // don't filter by row groups
             sortOrder               // The sort order
     );
-
+Log.d(TAG,"datos leídos: "+ cursor.getString(0));
 
 }
 

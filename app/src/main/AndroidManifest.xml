@@ -11,6 +11,27 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GrupoEstrategia">
         <activity
+            android:name=".advancedBrowserActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".placeholderActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".MenuPrincipalActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".makePassword"
             android:exported="false">
             <meta-data

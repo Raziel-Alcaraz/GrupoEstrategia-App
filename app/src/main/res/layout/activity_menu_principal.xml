@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MenuPrincipalActivity">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="171dp"
+        android:baselineAlignBottom="true"
+        android:textAlignment="center"
+        android:backgroundTint="@color/white"
+        android:drawableTop="@drawable/ic_launcher_background"
+        android:textColor="@color/black"
+        android:onClick="irAMainActivity"
+        android:text="Benefits"
+        />
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_weight="1" >
+    </Space>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" >
+        </Space>
+        <Button
+            android:id="@+id/descuentos"
+            android:onClick="placeholderActivity"
+            android:layout_weight="10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:baselineAlignBottom="true"
+            android:textAlignment="center"
+            android:backgroundTint="@color/white"
+            android:drawableTop="@drawable/ic_launcher_background"
+            android:textColor="@color/black"
+            android:text="Descuentos"
+            />
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" >
+        </Space>
+        <Button
+            android:id="@+id/vida"
+            android:onClick="placeholderActivity"
+            android:layout_weight="10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:baselineAlignBottom="true"
+            android:textAlignment="center"
+            android:backgroundTint="@color/white"
+            android:drawableTop="@drawable/ic_launcher_background"
+            android:textColor="@color/black"
+            android:text="Vida"
+            />
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" >
+        </Space>
+        <Button
+            android:id="@+id/rrhh"
+            android:onClick="placeholderActivity"
+            android:layout_weight="10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:baselineAlignBottom="true"
+            android:textAlignment="center"
+            android:backgroundTint="@color/white"
+            android:drawableTop="@drawable/ic_launcher_background"
+            android:textColor="@color/black"
+            android:text="RRHH"
+            />
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" >
+        </Space>
+    </LinearLayout>
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_weight="1" >
+    </Space>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" >
+        </Space>
+
+        <Button
+            android:id="@+id/academico"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="10"
+            android:backgroundTint="@color/white"
+            android:baselineAlignBottom="true"
+            android:drawableTop="@drawable/ic_launcher_background"
+            android:onClick="irAWBActivity"
+            android:text="Académico"
+            android:textAlignment="center"
+            android:textColor="@color/black" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" >
+        </Space>
+        <Button
+            android:id="@+id/avisos"
+            android:onClick="irAWBActivity"
+            android:layout_weight="10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:baselineAlignBottom="true"
+            android:textAlignment="center"
+            android:backgroundTint="@color/white"
+            android:drawableTop="@drawable/ic_launcher_background"
+            android:textColor="@color/black"
+            android:text="Avisos"
+            />
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" >
+        </Space>
+        <Button
+            android:id="@+id/entretenimiento"
+            android:onClick="irAWBActivity"
+            android:layout_weight="10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:baselineAlignBottom="true"
+            android:textAlignment="center"
+            android:backgroundTint="@color/white"
+            android:drawableTop="@drawable/ic_launcher_background"
+            android:textColor="@color/black"
+            android:text="Entre..."
+            />
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" >
+        </Space>
+    </LinearLayout>
+
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_weight="1" >
+    </Space>
+
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_weight="1" >
+    </Space>
+</LinearLayout>
